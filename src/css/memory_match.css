@@ -1,1 +1,70 @@
 /* CSS for Memory Match and High Scores pages */
+
+:root {
+    --background-color: #E4E4E4;
+    --h1-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
+    --h2-size: clamp(1.25rem, 4vw + 0.5rem, 2rem);
+    --h3-size: clamp(1rem, 4vw + 0.5rem, 1.5rem);
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: var(--h1-size);
+    line-height: 5rem;
+}
+
+h2 {
+    font-size: var(--h2-size);
+    line-height: 4rem;
+}
+
+h3 {
+    font-size: var(--h3-size);
+    line-height: 3rem;
+}
+
+nav {
+    background: var(--background-color);
+}
+
+h1 {
+    font-size: var(--h1-size);
+}
+
+#game-title {
+    padding: 1.5rem;
+}
+
+#game-area {
+    display: flex;
+    padding: 1.5rem;
+}
+
+#status-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-shadow: #9a9a9a 0.1rem 0.1rem 0.2rem 0.1rem;
+}
+
+#status-panel button {
+    width: 100%;
+    border-radius: 0.25rem;
+    box-shadow: #9a9a9a 0.1rem 0.1rem 0.2rem 0.1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-left: auto;
+}
+
+#btn-new-game {
+    color: white;
+    background: #44af6f;
+}
+
+#btn-reset {
+    color: white;
+    background: #b3b3b3;
+}
