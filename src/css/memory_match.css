@@ -1,7 +1,7 @@
 /* CSS for Memory Match and High Scores pages */
 
 :root {
-    --background-color: #E4E4E4;
+    --background-color: #616161;
     --h1-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
     --h2-size: clamp(1.25rem, 4vw + 0.5rem, 2rem);
     --h3-size: clamp(1rem, 4vw + 0.5rem, 1.5rem);
@@ -26,8 +26,23 @@ h3 {
     line-height: 3rem;
 }
 
-nav {
-    background: var(--background-color);
+table {
+    border-collapse: collapse;
+    border-spacing: 50px;
+}
+
+table td {
+    padding-right: 2rem;
+}
+
+table thead tr {
+    background-color: #7a7a7a;
+    color: #ffffff;
+    text-align: center;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f6f6f6;
 }
 
 h1 {
@@ -40,15 +55,24 @@ h1 {
 
 #game-area {
     display: flex;
-    padding: 1.5rem;
+    flex-wrap: wrap;
+    padding-left: clamp(1rem, 10vw + 0.5rem, 15rem);
+    padding-right: clamp(1rem, 10vw + 0.5rem, 15rem);
+    width: 100vw;
+    gap: 2rem;
+
+    /*height: 75dvh;*/
+    /*flex: 1 1 0;*/
 }
 
 #status-panel {
+    width: 15rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem;
     box-shadow: #9a9a9a 0.1rem 0.1rem 0.2rem 0.1rem;
+    height: max-content;
 }
 
 #status-panel button {
@@ -59,6 +83,10 @@ h1 {
     margin-left: auto;
 }
 
+#status-panel button:active {
+    filter: brightness(0.9);
+}
+
 #btn-new-game {
     color: white;
     background: #44af6f;
@@ -67,4 +95,25 @@ h1 {
 #btn-reset {
     color: white;
     background: #b3b3b3;
+}
+
+#board {
+    background: var(--background-color);
+    width: clamp(20rem, 40vw, 40rem);
+    aspect-ratio: 1/1;
+    /*min-width: 20rem;*/
+    /*height: 40rem;*/
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.card {
+    background: blue;
+}
+
+#scores-table {
+    border: black solid 1px;
 }

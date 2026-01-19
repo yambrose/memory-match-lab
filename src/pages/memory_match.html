@@ -8,25 +8,58 @@
     <link rel="stylesheet" href="../css/memory_match.css">
 </head>
 <body>
-    <nav>
-        <button>Play Game</button>
-        <button>High Scores</button>
-    </nav>
-    <section id="game-title">
-        <h1>Memory Match</h1>
-        <p>Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
-    </section>
-    <section id="game-area">
-        <div id="status-panel">
-            <h3>Game Status</h3>
-            <p><strong>Moves:</strong> <span id="moves">0</span></p>
-            <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
-            <p><strong>Time:</strong> <span id="time">0</span> s</p>
-            <hr>
+<!--<nav>-->
+<!--    <span>MEMORY MATCH</span>-->
+<!--    <a href="memory_match.html">Play Game</a>-->
+<!--    <a href="high_scores.html">High Scores</a>-->
+<!--</nav>-->
 
-            <button id="btn-new-game">New Game</button>
-            <button id="btn-reset">Reset (Same Board)</button>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        Memory Match
+        <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="memory_match.html">
+                Play Game
+            </a>
+
+            <a class="navbar-item" href="high_scores.html">
+                High Scores
+            </a>
         </div>
-    </section>
+    </div>
+</nav>
+
+<section id="game-title">
+    <h1>Memory Match</h1>
+    <p>Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
+</section>
+<section id="game-area">
+    <div id="status-panel">
+        <h3>Game Status</h3>
+        <p><strong>Moves:</strong> <span id="moves">0</span></p>
+        <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
+        <p><strong>Time:</strong> <span id="time">0</span> s</p>
+        <hr>
+
+        <button id="btn-new-game">New Game</button>
+        <button id="btn-reset">Reset (Same Board)</button>
+    </div>
+
+    <div id="board">
+        <div class="card"></div>
+    </div>
+
+    <div id="message"></div>
+</section>
 </body>
 </html>
