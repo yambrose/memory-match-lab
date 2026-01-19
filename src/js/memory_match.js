@@ -1,5 +1,6 @@
 
-// HTML References
+// region HTML References
+
 const moves = document.getElementById('moves');
 const matches = document.getElementById('matches');
 const time = document.getElementById('time');
@@ -9,53 +10,63 @@ const resetBtn = document.getElementById('btn-reset');
 
 const board = document.getElementById('board');
 
+// endregion
+
 const GameState = {
     READY_TO_PLAY: "readyToPlay",
     WAITING: "waiting",
     GAME_OVER: "gameOver",
 }
-
 const SYMBOLS = ['🍎', '🍌', '🍇', '🍉', '🍒', '🥝', '🍍', '🍑'];
 let cards;
 let currentSelectedCards = [];
 let gameState = GameState.WAITING;
 
-function startNewGame() {
+function resetStatuses() {
     moves.innerHTML = '0';
     matches.innerHTML = '0';
     time.innerHTML = '0';
+}
 
-    // Setup board
+function resetSymbolPositions() {
     let boardSymbols = [...SYMBOLS, ...SYMBOLS]
     shuffleArray(boardSymbols);
 
     for (const [index, symbol] of boardSymbols.entries()) {
         createCard(index, symbol)
     }
+}
 
-    cards = document.querySelectorAll('.card')
+function startNewGame() {
+    board.innerHTML = '';
+    resetStatuses();
+    resetSymbolPositions();
     gameState = GameState.READY_TO_PLAY;
+    cards = document.querySelectorAll('.card')
+}
+
+function resetBoardStatus() {
+    resetStatuses();
+    for (const card of cards) {
+        card.className = 'card';
+    }
+    cards = document.querySelectorAll('.card')
 }
 
 function shuffleArray(array) {
     let currentIndex = array.length;
 
-    // While there remain elements to shuffle...
     while (currentIndex !== 0) {
 
-        // Pick a remaining element...
         let randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
     }
-
 }
 
 function createCard(index, symbol) {
-    // console.log("creating card " + symbol);
     const card = document.createElement('div');
     card.className = 'card';
 
@@ -80,7 +91,6 @@ function handleCardSelection(card) {
     ) {
         return;
     }
-    console.log(`revealing ${card}`)
 
     card.classList.add('flipped');
     currentSelectedCards.push(card);
@@ -94,15 +104,16 @@ function checkSelectionsForMatch() {
     gameState = GameState.WAITING;
     console.log(currentSelectedCards[0].textContent, currentSelectedCards[1].textContent)
     if (currentSelectedCards[0].innerHTML === currentSelectedCards[1].innerHTML) {
-        console.log("MATCH")
+        currentSelectedCards[0].classList.add('matched')
+        currentSelectedCards[1].classList.add('matched')
         currentSelectedCards.length = 0;
         gameState = GameState.READY_TO_PLAY;
     } else {
-        console.log("NO MATCH")
-
+        currentSelectedCards[0].classList.add('wrong')
+        currentSelectedCards[1].classList.add('wrong')
         setTimeout(() => {
-            currentSelectedCards[0].classList.remove('flipped');
-            currentSelectedCards[1].classList.remove('flipped');
+            currentSelectedCards[0].className = 'card';
+            currentSelectedCards[1].className = 'card';
             currentSelectedCards.length = 0;
             gameState = GameState.READY_TO_PLAY;
         }, 500);
@@ -110,4 +121,10 @@ function checkSelectionsForMatch() {
     }
 }
 
+function buttonsSetup() {
+    newGameBtn.addEventListener('click', () => startNewGame());
+    resetBtn.addEventListener('click', () => resetBoardStatus());
+}
+
+buttonsSetup();
 startNewGame();
