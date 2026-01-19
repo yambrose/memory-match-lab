@@ -38,28 +38,30 @@
         </div>
     </div>
 </nav>
+<main>
+    <section id="game-title" class="island">
+        <h2>Memory Match</h2>
+        <p>Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
+    </section>
+    <section id="game-area">
+        <div id="status-panel" class="island">
+            <h2>Status</h2>
+            <p><strong>Moves:</strong> <span id="moves">0</span></p>
+            <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
+            <p><strong>Time:</strong> <span id="time">0</span> s</p>
+            <hr>
 
-<section id="game-title">
-    <h1>Memory Match</h1>
-    <p>Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
-</section>
-<section id="game-area">
-    <div id="status-panel">
-        <h3>Game Status</h3>
-        <p><strong>Moves:</strong> <span id="moves">0</span></p>
-        <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
-        <p><strong>Time:</strong> <span id="time">0</span> s</p>
-        <hr>
+            <button id="btn-new-game">New Game</button>
+            <button id="btn-reset">Reset (Same Board)</button>
+        </div>
 
-        <button id="btn-new-game">New Game</button>
-        <button id="btn-reset">Reset (Same Board)</button>
-    </div>
+        <div id="board" class="island four-by-four">
 
-    <div id="board">
-        <div class="card"></div>
-    </div>
+        </div>
+<!--        <div id="message"></div>-->
 
-    <div id="message"></div>
-</section>
+        <script src="../js/memory_match.js"></script>
+    </section>
+</main>
 </body>
 </html>

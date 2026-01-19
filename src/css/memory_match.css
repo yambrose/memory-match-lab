@@ -2,9 +2,13 @@
 
 :root {
     --background-color: #616161;
-    --h1-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
-    --h2-size: clamp(1.25rem, 4vw + 0.5rem, 2rem);
-    --h3-size: clamp(1rem, 4vw + 0.5rem, 1.5rem);
+    --island-bg-color: #918989;
+    --island-border-color: #E4E4E4;
+    --sub-bg-color: #D9D9D9;
+    --text-color-primary: white;
+    --text-color-secondary: #E7E7E7;
+    --border-radius-desktop: 0.5rem;
+    --border-radius-mobile: 0.25rem;
 }
 
 h1, h2, h3 {
@@ -12,18 +16,39 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: var(--h1-size);
+    font-size: 3rem;
     line-height: 5rem;
 }
 
 h2 {
-    font-size: var(--h2-size);
+    font-size: 2rem;
     line-height: 4rem;
 }
 
 h3 {
-    font-size: var(--h3-size);
+    font-size: 1.5rem;
     line-height: 3rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-inline: clamp(1rem, 6vw + 1rem, 15rem);
+}
+
+.island {
+    background-color: var(--island-bg-color);
+    border: 2px solid var(--island-border-color);
+    border-radius: var(--border-radius-desktop);
+}
+
+#game-title h2 {
+    color: var(--text-color-primary);
+}
+
+#game-title p {
+    color: var(--text-color-secondary);
 }
 
 table {
@@ -45,75 +70,122 @@ table tbody tr:nth-child(even) {
     background-color: #f6f6f6;
 }
 
-h1 {
-    font-size: var(--h1-size);
-}
-
 #game-title {
     padding: 1.5rem;
 }
 
 #game-area {
     display: flex;
-    flex-wrap: wrap;
-    padding-left: clamp(1rem, 10vw + 0.5rem, 15rem);
-    padding-right: clamp(1rem, 10vw + 0.5rem, 15rem);
-    width: 100vw;
-    gap: 2rem;
-
-    /*height: 75dvh;*/
-    /*flex: 1 1 0;*/
+    gap: 1rem;
+    justify-content: space-between;
 }
 
 #status-panel {
-    width: 15rem;
+    color: white;
+    /*max-width: 20rem;*/
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    box-shadow: #9a9a9a 0.1rem 0.1rem 0.2rem 0.1rem;
     height: max-content;
 }
 
 #status-panel button {
+    font-weight: bold;
     width: 100%;
-    border-radius: 0.25rem;
-    box-shadow: #9a9a9a 0.1rem 0.1rem 0.2rem 0.1rem;
+    border-radius: var(--border-radius-desktop);
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin-left: auto;
 }
 
 #status-panel button:active {
-    filter: brightness(0.9);
+    filter: brightness(0.7);
 }
 
 #btn-new-game {
     color: white;
-    background: #44af6f;
+    background: linear-gradient(to bottom, #6EC958, #6AB458);
+    border: 2px #A7EA97 solid;
 }
 
 #btn-reset {
     color: white;
-    background: #b3b3b3;
+    background: linear-gradient(#AFAFAF, #A5A5A5);
+    border: 2px #C5C5C5 solid;
 }
 
 #board {
-    background: var(--background-color);
-    width: clamp(20rem, 40vw, 40rem);
-    aspect-ratio: 1/1;
-    /*min-width: 20rem;*/
-    /*height: 40rem;*/
+    width: 100%;
+    min-height: 35rem;
     display: grid;
-    gap: 0.25rem;
+    gap: 0.5rem;
     padding: 0.5rem;
+}
+
+.four-by-four {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
 }
 
+.six-by-six {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+/* Card Styles */
+
 .card {
-    background: blue;
+    background: var(--sub-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 !important;
+    /*    fix later bulma css auto margin  */
+}
+
+.card:hover {
+    filter: brightness(0.9);
+}
+
+.card-face {
+    font-size: 2rem;
+    visibility: hidden;
+}
+
+.flipped .card-face {
+    visibility: visible;
+}
+
+.matched .card-face {
+    visibility: visible;
+    user-select: none;
+}
+
+.wrong {
+    border: 2px solid red;
 }
 
 #scores-table {
     border: black solid 1px;
+}
+
+@media (max-width: 769px) {
+    main {
+        padding-inline: 1rem;
+    }
+
+    #game-area {
+        flex-direction: column;
+    }
+
+    /*#board {*/
+    /*    aspect-ratio: 1/1;*/
+    /*    min-height: auto;*/
+    /*}*/
+
+    .island {
+        width: 100%;
+    }
 }
