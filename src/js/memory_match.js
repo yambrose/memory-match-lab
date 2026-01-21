@@ -183,6 +183,7 @@ function checkSelectionsForMatch() {
 }
 
 function handleWin() {
+    saveScoreBtn.disabled = false;
     clearInterval(timerInterval);
     totalMovesLabel.textContent = moves;
     bestStreakLabel.textContent = bestStreak;
@@ -198,9 +199,11 @@ function setupButtons() {
 
 function saveScore(name) {
     if (name === "" || name == null) {
-        console.error("missing name")
+        console.error("Name missing.")
         return;
     }
+
+    saveScoreBtn.disabled = true;
 
     try {
         const existingScoresData = localStorage.getItem('scores');
@@ -224,6 +227,7 @@ function saveScore(name) {
     } catch (error) {
         console.error("Failed to write scores to localStorage", error);
     }
+
 }
 
 
