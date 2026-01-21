@@ -12,9 +12,11 @@ const winPopup = document.getElementById('message');
 const totalMovesLabel = document.getElementById('total-moves');
 const bestStreakLabel = document.getElementById('best-streak');
 const totalTimeLabel = document.getElementById('total-time');
+const nameInput = document.getElementById('name-input');
 
 const newGameBtn = document.getElementById('btn-new-game');
 const resetBtn = document.getElementById('btn-reset');
+const saveScoreBtn = document.getElementById('btn-save-score');
 
 const board = document.getElementById('board');
 
@@ -155,7 +157,6 @@ function handleCardSelection(card) {
 
 function checkSelectionsForMatch() {
     gameState = GameState.WAITING;
-    console.log(currentSelectedCards[0].textContent, currentSelectedCards[1].textContent)
     if (currentSelectedCards[0].textContent === currentSelectedCards[1].textContent) {
         currentSelectedCards[0].classList.add('matched')
         currentSelectedCards[1].classList.add('matched')
@@ -190,8 +191,39 @@ function handleWin() {
 }
 
 function setupButtons() {
-    newGameBtn.addEventListener('click', () => startNewGame());
-    resetBtn.addEventListener('click', () => resetBoardStatus());
+    newGameBtn.addEventListener('click', startNewGame);
+    resetBtn.addEventListener('click', resetBoardStatus);
+    saveScoreBtn.addEventListener('click', () => saveScore(nameInput.value));
+}
+
+function saveScore(name) {
+    if (name === "" || name == null) {
+        console.error("missing name")
+        return;
+    }
+
+    try {
+        const existingScoresData = localStorage.getItem('scores');
+        console.log(existingScoresData);
+        const scoresArray = existingScoresData ? JSON.parse(existingScoresData) : [];
+
+        const date = new Date();
+        const formattedDateString = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
+
+        const scoreRecord = {
+            name: name,
+            moves: moves,
+            time: timeSec,
+            date: formattedDateString,
+        }
+
+        console.log(scoreRecord);
+
+        scoresArray.push(scoreRecord);
+        localStorage.setItem('scores', JSON.stringify(scoresArray));
+    } catch (error) {
+        console.error("Failed to write scores to localStorage", error);
+    }
 }
 
 
