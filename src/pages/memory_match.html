@@ -64,10 +64,16 @@
 
         </div>
     </section>
-    <div id="message">
-        <h2></h2>
+    <div id="message" class="island">
+        <h2>You won!</h2>
+        <p>Total Moves: <span id="total-moves">0</span></p>
+        <p>Total Time: <span id="total-time">0</span></p>
 
-        <button></button>
+        <div id="save-score-container">
+            <h3>Save your score!</h3>
+            <input id="name-input" type="text" placeholder="Enter your name">
+            <button id="btn-save-score">Save</button>
+        </div>
     </div>
     <script src="../js/memory_match.js"></script>
 </main>

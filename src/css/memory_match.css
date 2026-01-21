@@ -42,6 +42,7 @@ main {
     background: var(--island-bg-color);
     border: 2px solid var(--island-border-color);
     border-radius: var(--border-radius-desktop);
+    box-shadow: #9f9f9f 0.1rem 0.1rem 0.3rem 0;
 }
 
 #game-title h2 {
@@ -110,11 +111,11 @@ table tbody tr:nth-child(even) {
 }
 
 #statuses div p {
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, 2vw + 0.5rem, 1.75rem);
 }
 
 #statuses div span {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 2.25vw + 1rem, 3rem)
 }
 
 #status-panel button {
@@ -202,6 +203,53 @@ table tbody tr:nth-child(even) {
 
 #scores-table {
     border: black solid 1px;
+}
+
+#message {
+    visibility: hidden;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: flex;
+    width: 25rem;
+    text-align: center;
+    aspect-ratio: 1/1;
+    flex-direction: column;
+    color: var(--text-color-primary);
+    background: var(--island-bg-color);
+    padding: 1rem;
+}
+
+#message h2 {
+    color: #6bf86b;
+}
+
+#save-score-container {
+    padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    color: var(--island-bg-color);
+    border-radius: var(--border-radius-desktop);
+    background: var(--sub-bg-color);
+    margin-top: auto;
+}
+
+#name-input {
+    border: 1px solid var(--island-bg-color);
+    border-radius: var(--border-radius-desktop);
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 1.25rem
+}
+
+#btn-save-score {
+    font-weight: bold;
+    width: 100%;
+    border-radius: var(--border-radius-desktop);
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-left: auto;
+    background: linear-gradient(to bottom, #66dded, #56c8d8);
+    border: 2px #98f3ff solid;
 }
 
 @media (max-width: 769px) {

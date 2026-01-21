@@ -3,7 +3,9 @@
 
 const movesLabel = document.getElementById('moves');
 const matchesLabel = document.getElementById('matches');
+const totalPairsLabel = document.getElementById('total-pairs');
 const timeLabel = document.getElementById('time');
+const winPopup = document.getElementById('message');
 
 const newGameBtn = document.getElementById('btn-new-game');
 const resetBtn = document.getElementById('btn-reset');
@@ -25,6 +27,7 @@ let gameState = GameState.WAITING;
 let timerInterval;
 let moves = 0;
 let matches = 0;
+let totalPairs = 0;
 let timeSec = 0;
 
 function startTimer() {
@@ -38,10 +41,13 @@ function resetStatuses() {
     moves = 0;
     matches = 0;
     timeSec = 0;
+    totalPairs = SYMBOLS.length;
 
-    movesLabel.innerHTML = moves;
-    matchesLabel.innerHTML = matches;
-    timeLabel.innerHTML = timeSec;
+    movesLabel.textContent = moves;
+    matchesLabel.textContent = matches;
+    timeLabel.textContent = timeSec;
+    totalPairsLabel.textContent = totalPairs;
+    winPopup.style.visibility = 'hidden';
     clearInterval(timerInterval);
 }
 
@@ -59,6 +65,7 @@ function startNewGame() {
     board.innerHTML = '';
     resetStatuses();
     resetSymbolPositions();
+    resetStatuses();
 
     startTimer();
     gameState = GameState.READY_TO_PLAY;
@@ -77,12 +84,12 @@ function resetBoardStatus() {
     cards = document.querySelectorAll('.card')
 }
 
-function updateBoardStatus() {
+function updateBoardStatus(hasMatch) {
+    if (hasMatch) {matches++}
+    moves++;
 
-}
-
-function resetTimer() {
-
+    matchesLabel.textContent = matches;
+    movesLabel.textContent = moves;
 }
 
 function shuffleArray(array) {
@@ -104,7 +111,7 @@ function createCard(index, symbol) {
 
     const cardFace = document.createElement('span');
     cardFace.className = 'card-face';
-    cardFace.innerHTML = symbol;
+    cardFace.textContent = symbol;
 
     card.appendChild(cardFace);
     card.id = index;
@@ -135,10 +142,11 @@ function handleCardSelection(card) {
 function checkSelectionsForMatch() {
     gameState = GameState.WAITING;
     console.log(currentSelectedCards[0].textContent, currentSelectedCards[1].textContent)
-    if (currentSelectedCards[0].innerHTML === currentSelectedCards[1].innerHTML) {
+    if (currentSelectedCards[0].textContent === currentSelectedCards[1].textContent) {
         currentSelectedCards[0].classList.add('matched')
         currentSelectedCards[1].classList.add('matched')
         currentSelectedCards.length = 0;
+        updateBoardStatus(true);
         gameState = GameState.READY_TO_PLAY;
     } else {
         currentSelectedCards[0].classList.add('wrong')
@@ -147,16 +155,25 @@ function checkSelectionsForMatch() {
             currentSelectedCards[0].className = 'card';
             currentSelectedCards[1].className = 'card';
             currentSelectedCards.length = 0;
+            updateBoardStatus(false);
             gameState = GameState.READY_TO_PLAY;
-        }, 500);
+        }, 1000);
+    }
 
+    checkForWin();
+}
+
+function checkForWin() {
+    if (matches === totalPairs) {
+        winPopup.style.visibility = 'visible';
     }
 }
 
-function buttonsSetup() {
+function setupButtons() {
     newGameBtn.addEventListener('click', () => startNewGame());
     resetBtn.addEventListener('click', () => resetBoardStatus());
 }
 
-buttonsSetup();
+
+setupButtons();
 startNewGame();
