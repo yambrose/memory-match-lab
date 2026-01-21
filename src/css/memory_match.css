@@ -243,6 +243,7 @@ table tbody tr:nth-child(even) {
 }
 
 #btn-save-score {
+    color: var(--text-color-primary);
     font-weight: bold;
     width: 100%;
     border-radius: var(--border-radius-desktop);
@@ -250,6 +251,10 @@ table tbody tr:nth-child(even) {
     margin-left: auto;
     background: linear-gradient(to bottom, #66dded, #56c8d8);
     border: 2px #98f3ff solid;
+}
+
+#btn-save-score.disabled {
+    background: linear-gradient(to bottom, #66dded, #56c8d8);
 }
 
 @media (max-width: 769px) {

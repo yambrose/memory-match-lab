@@ -216,6 +216,7 @@ function saveScore(name) {
         const scoreRecord = {
             name: name,
             moves: moves,
+            bestStreak: bestStreak,
             time: timeSec,
             date: formattedDateString,
         }
