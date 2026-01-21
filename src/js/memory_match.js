@@ -4,8 +4,14 @@
 const movesLabel = document.getElementById('moves');
 const matchesLabel = document.getElementById('matches');
 const totalPairsLabel = document.getElementById('total-pairs');
+const streakLabel = document.getElementById('streak');
 const timeLabel = document.getElementById('time');
+
+
 const winPopup = document.getElementById('message');
+const totalMovesLabel = document.getElementById('total-moves');
+const bestStreakLabel = document.getElementById('best-streak');
+const totalTimeLabel = document.getElementById('total-time');
 
 const newGameBtn = document.getElementById('btn-new-game');
 const resetBtn = document.getElementById('btn-reset');
@@ -28,6 +34,8 @@ let timerInterval;
 let moves = 0;
 let matches = 0;
 let totalPairs = 0;
+let streak = 0;
+let bestStreak = 0;
 let timeSec = 0;
 
 function startTimer() {
@@ -41,10 +49,13 @@ function resetStatuses() {
     moves = 0;
     matches = 0;
     timeSec = 0;
+    streak = 0;
+    bestStreak = 0;
     totalPairs = SYMBOLS.length;
 
     movesLabel.textContent = moves;
     matchesLabel.textContent = matches;
+    streakLabel.textContent = streak;
     timeLabel.textContent = timeSec;
     totalPairsLabel.textContent = totalPairs;
     winPopup.style.visibility = 'hidden';
@@ -85,11 +96,14 @@ function resetBoardStatus() {
 }
 
 function updateBoardStatus(hasMatch) {
+    if (streak > bestStreak) {bestStreak = streak}
     if (hasMatch) {matches++}
     moves++;
 
+
     matchesLabel.textContent = matches;
     movesLabel.textContent = moves;
+    streakLabel.textContent = streak;
 }
 
 function shuffleArray(array) {
@@ -146,27 +160,33 @@ function checkSelectionsForMatch() {
         currentSelectedCards[0].classList.add('matched')
         currentSelectedCards[1].classList.add('matched')
         currentSelectedCards.length = 0;
+        streak++;
         updateBoardStatus(true);
         gameState = GameState.READY_TO_PLAY;
     } else {
         currentSelectedCards[0].classList.add('wrong')
         currentSelectedCards[1].classList.add('wrong')
+        streak = 0;
+        updateBoardStatus(false);
         setTimeout(() => {
             currentSelectedCards[0].className = 'card';
             currentSelectedCards[1].className = 'card';
             currentSelectedCards.length = 0;
-            updateBoardStatus(false);
             gameState = GameState.READY_TO_PLAY;
         }, 1000);
     }
 
-    checkForWin();
+    if (matches === totalPairs) {
+        handleWin()
+    }
 }
 
-function checkForWin() {
-    if (matches === totalPairs) {
-        winPopup.style.visibility = 'visible';
-    }
+function handleWin() {
+    clearInterval(timerInterval);
+    totalMovesLabel.textContent = moves;
+    bestStreakLabel.textContent = bestStreak;
+    totalTimeLabel.textContent = timeSec;
+    winPopup.style.visibility = 'visible';
 }
 
 function setupButtons() {
