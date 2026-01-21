@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="../css/memory_match.css">
 </head>
 <body>
-<!--<nav>-->
-<!--    <span>MEMORY MATCH</span>-->
-<!--    <a href="memory_match.html">Play Game</a>-->
-<!--    <a href="high_scores.html">High Scores</a>-->
-<!--</nav>-->
-
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -46,10 +40,21 @@
     <section id="game-area">
         <div id="status-panel" class="island">
             <h2>Status</h2>
-            <p><strong>Moves:</strong> <span id="moves">0</span></p>
-            <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
-            <p><strong>Time:</strong> <span id="time">0</span> s</p>
-            <hr>
+            <div id="statuses">
+                <div>
+                    <p>Moves<p>
+                    <span id="moves">0</span>
+                </div>
+                <div>
+                    <p>Matches<p>
+                    <span id="matches">0</span> <span>/</span> <span id="total-pairs">8</span>
+                </div>
+                <div>
+                    <p>Time</p>
+                    <span id="time">0</span>
+                    <span>s</span>
+                </div>
+            </div>
 
             <button id="btn-new-game">New Game</button>
             <button id="btn-reset">Reset (Same Board)</button>
@@ -58,10 +63,13 @@
         <div id="board" class="island four-by-four">
 
         </div>
-<!--        <div id="message"></div>-->
-
-        <script src="../js/memory_match.js"></script>
     </section>
+    <div id="message">
+        <h2></h2>
+
+        <button></button>
+    </div>
+    <script src="../js/memory_match.js"></script>
 </main>
 </body>
 </html>

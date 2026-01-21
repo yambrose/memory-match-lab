@@ -1,9 +1,9 @@
 
 // region HTML References
 
-const moves = document.getElementById('moves');
-const matches = document.getElementById('matches');
-const time = document.getElementById('time');
+const movesLabel = document.getElementById('moves');
+const matchesLabel = document.getElementById('matches');
+const timeLabel = document.getElementById('time');
 
 const newGameBtn = document.getElementById('btn-new-game');
 const resetBtn = document.getElementById('btn-reset');
@@ -18,14 +18,31 @@ const GameState = {
     GAME_OVER: "gameOver",
 }
 const SYMBOLS = ['🍎', '🍌', '🍇', '🍉', '🍒', '🥝', '🍍', '🍑'];
+
 let cards;
 let currentSelectedCards = [];
 let gameState = GameState.WAITING;
+let timerInterval;
+let moves = 0;
+let matches = 0;
+let timeSec = 0;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeSec++;
+        timeLabel.textContent = `${timeSec}`
+    }, 1000)
+}
 
 function resetStatuses() {
-    moves.innerHTML = '0';
-    matches.innerHTML = '0';
-    time.innerHTML = '0';
+    moves = 0;
+    matches = 0;
+    timeSec = 0;
+
+    movesLabel.innerHTML = moves;
+    matchesLabel.innerHTML = matches;
+    timeLabel.innerHTML = timeSec;
+    clearInterval(timerInterval);
 }
 
 function resetSymbolPositions() {
@@ -38,19 +55,34 @@ function resetSymbolPositions() {
 }
 
 function startNewGame() {
+    gameState = GameState.WAITING;
     board.innerHTML = '';
     resetStatuses();
     resetSymbolPositions();
+
+    startTimer();
     gameState = GameState.READY_TO_PLAY;
     cards = document.querySelectorAll('.card')
 }
 
 function resetBoardStatus() {
+    gameState = GameState.WAITING;
     resetStatuses();
     for (const card of cards) {
         card.className = 'card';
     }
+
+    startTimer();
+    gameState = GameState.READY_TO_PLAY;
     cards = document.querySelectorAll('.card')
+}
+
+function updateBoardStatus() {
+
+}
+
+function resetTimer() {
+
 }
 
 function shuffleArray(array) {
