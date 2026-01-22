@@ -198,6 +198,8 @@ function saveScore(name) {
         return;
     }
 
+    saveScoreBtn.classList.add('disabled');
+    saveScoreBtn.textContent = "Saved!";
     saveScoreBtn.disabled = true;
 
     try {

@@ -2,32 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Memory Match Game</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/memory_match.css">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" rel="stylesheet">
+    <link href="../css/memory_match.css" rel="stylesheet">
 </head>
 <body>
-<nav>
-    <span>MEMORY MATCH</span>
-    <a href="memory_match.html">Play Game</a>
-    <a href="high_scores.html">High Scores</a>
+<nav aria-label="main navigation" class="navbar" role="navigation">
+    <div class="navbar-brand">
+        <h2>Memory Match</h2>
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger" id="burger" role="button">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="navbar-menu" id="burger-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="memory_match.html">
+                Play Game
+            </a>
+
+            <a class="navbar-item" href="high_scores.html">
+                High Scores
+            </a>
+        </div>
+    </div>
 </nav>
-<table id="scores-table">
-    <thead>
-    <tr>
-        <th>Rank</th>
-        <th>Player</th>
-        <th>Moves</th>
-        <th>Best Streak</th>
-        <th>Time (s)</th>
-        <th>Date</th>
-    </tr>
-    </thead>
-    <tbody id="scores-body">
-    <!-- Lab 01: fill with sample rows -->
-    </tbody>
-</table>
+<main>
+    <table id="scores-table" class="island">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Moves</th>
+                <th>Best Streak</th>
+                <th>Time (s)</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="scores-body"></tbody>
+    </table>
+</main>
 <script src="../js/high_scores.js"></script>
 <script src="../js/navbar.js"></script>
 </body>
