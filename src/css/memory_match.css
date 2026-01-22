@@ -139,13 +139,13 @@ table thead tr * {
     width: 100%;
     border-radius: var(--border-radius-desktop);
     padding: 0.5rem 1rem 0.5rem 1rem;
-    margin-left: auto;
 }
 
 #btn-new-game {
     color: white;
     background: linear-gradient(to bottom, #6EC958, #6AB458);
     border: 2px #A7EA97 solid;
+    margin-top: auto;
 }
 
 #btn-reset {
