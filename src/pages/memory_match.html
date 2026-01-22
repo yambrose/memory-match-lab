@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Memory Match Game</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/memory_match.css">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" rel="stylesheet">
+    <link href="../css/memory_match.css" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
-        Memory Match
-        <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
+        <h2>Memory Match</h2>
+        <a id="burger" aria-expanded="false" aria-label="menu" class="navbar-burger" role="button">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -20,7 +20,7 @@
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="burger-menu" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" href="memory_match.html">
                 Play Game
@@ -33,25 +33,28 @@
     </div>
 </nav>
 <main>
-    <section id="game-title" class="island">
+    <section class="island" id="game-title">
         <h2>Memory Match</h2>
         <p>Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
     </section>
     <section id="game-area">
-        <div id="status-panel" class="island">
+        <div class="island" id="status-panel">
             <h2>Status</h2>
             <div id="statuses">
                 <div>
-                    <p>Moves<p>
-                    <span id="moves">0</span>
+                    <p>Moves
+                    <p>
+                        <span id="moves">0</span>
                 </div>
                 <div>
-                    <p>Matches<p>
-                    <span id="matches">0</span> <span>/</span> <span id="total-pairs">8</span>
+                    <p>Matches
+                    <p>
+                        <span id="matches">0</span> <span>/</span> <span id="total-pairs">8</span>
                 </div>
                 <div>
-                    <p>Streak<p>
-                    <span id="streak">0</span>
+                    <p>Streak
+                    <p>
+                        <span id="streak">0</span>
                 </div>
                 <div>
                     <p>Time</p>
@@ -64,11 +67,11 @@
             <button id="btn-reset">Reset (Same Board)</button>
         </div>
 
-        <div id="board" class="island four-by-four">
+        <div class="island four-by-four" id="board">
 
         </div>
     </section>
-    <div id="message" class="island">
+    <div class="island" id="message">
         <h2>You won!</h2>
         <p>Total Moves: <span id="total-moves">0</span></p>
         <p>Best Streak: <span id="best-streak">0</span></p>
@@ -76,11 +79,12 @@
 
         <div id="save-score-container">
             <h3>Save your score!</h3>
-            <input id="name-input" type="text" placeholder="Enter your name">
+            <input id="name-input" placeholder="Enter your name" type="text">
             <button id="btn-save-score">Save</button>
         </div>
     </div>
     <script src="../js/memory_match.js"></script>
+    <script src="../js/navbar.js"></script>
 </main>
 </body>
 </html>

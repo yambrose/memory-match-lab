@@ -1,7 +1,6 @@
 /* CSS for Memory Match and High Scores pages */
 
 :root {
-    --background-color: #616161;
     --island-bg-color: #918989;
     --island-border-color: #E4E4E4;
     --sub-bg-color: #D9D9D9;
@@ -51,6 +50,7 @@ main {
 
 #game-title h2 {
     color: var(--text-color-primary);
+    margin-bottom: 0.5rem;
 }
 
 #game-title p {
@@ -97,7 +97,7 @@ table tbody tr:nth-child(even) {
 }
 
 #status-panel h2 {
-    font-size: clamp(1.25rem, 2vw + 0.5rem, 2.5rem);
+    font-size: clamp(1rem, 1.75vw + 0.5rem, 2rem);
 }
 
 #statuses {
@@ -111,7 +111,6 @@ table tbody tr:nth-child(even) {
 #statuses div {
     width: 100%;
     border-radius: var(--border-radius-desktop);
-    padding: 0.25rem;
     font-weight: bold;
     color: var(--island-bg-color);
     background: var(--sub-bg-color);
@@ -295,4 +294,20 @@ table tbody tr:nth-child(even) {
         border-radius: var(--border-radius-mobile);
         width: 100%;
     }
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--sub-bg-color);
+    margin-bottom: 1rem;
+}
+
+.navbar h2 {
+    padding: 1rem;
+}
+
+.navbar-burger {
+    color: var(--island-bg-color);
 }

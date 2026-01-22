@@ -1,12 +1,8 @@
-
-// region HTML References
-
 const movesLabel = document.getElementById('moves');
 const matchesLabel = document.getElementById('matches');
 const totalPairsLabel = document.getElementById('total-pairs');
 const streakLabel = document.getElementById('streak');
 const timeLabel = document.getElementById('time');
-
 
 const winPopup = document.getElementById('message');
 const totalMovesLabel = document.getElementById('total-moves');
@@ -19,8 +15,6 @@ const resetBtn = document.getElementById('btn-reset');
 const saveScoreBtn = document.getElementById('btn-save-score');
 
 const board = document.getElementById('board');
-
-// endregion
 
 const GameState = {
     READY_TO_PLAY: "readyToPlay",
