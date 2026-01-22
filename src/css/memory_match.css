@@ -31,6 +31,10 @@ h3 {
     line-height: 1rem;
 }
 
+button:active {
+    filter: brightness(0.7);
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -127,10 +131,6 @@ table tbody tr:nth-child(even) {
     border-radius: var(--border-radius-desktop);
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin-left: auto;
-}
-
-#status-panel button:active {
-    filter: brightness(0.7);
 }
 
 #btn-new-game {

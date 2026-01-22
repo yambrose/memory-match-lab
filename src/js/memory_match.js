@@ -53,6 +53,7 @@ function resetStatuses() {
     timeSec = 0;
     streak = 0;
     bestStreak = 0;
+    currentSelectedCards = [];
     totalPairs = SYMBOLS.length;
 
     movesLabel.textContent = moves;
